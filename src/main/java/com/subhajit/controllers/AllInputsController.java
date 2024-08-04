@@ -1,9 +1,11 @@
 package com.subhajit.controllers;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -47,7 +49,10 @@ public class AllInputsController {
 	 */	
 	@GetMapping("/spring-querystring")
 	public ResponseEntity<String> springQuerystring(@RequestParam("id") Integer id, @RequestParam("name") String name, HttpServletRequest request) {
-		System.out.println("spring-querystring");
+		System.out.println("spring-querystring >> " + Thread.currentThread().getId());
+		try{
+			Thread.sleep(30000);
+		}catch(Exception e){}
 		return new ResponseEntity("spring-querystring :: " + id + " - " + name,HttpStatus.OK);
 	}
 	
@@ -81,8 +86,10 @@ public class AllInputsController {
 	 * If some fields are missing from JSON body and its a valid JSON, then the JSON will be absorbed but the missing fields will be assigned as null
 	 */	
 	@PostMapping(value = "/spring-json", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SuperModel> springJSON(@RequestBody SuperModel superModel) {
+	public ResponseEntity<SuperModel> springJSON(ServletRequest request, @RequestBody SuperModel superModel) {
 		System.out.println("spring-JSON");
+		// Exception test
+			
 		return new ResponseEntity(superModel,HttpStatus.OK);
 	}
 	

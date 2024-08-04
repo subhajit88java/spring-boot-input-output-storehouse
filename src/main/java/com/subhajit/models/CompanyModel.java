@@ -2,7 +2,6 @@ package com.subhajit.models;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
 public class CompanyModel {
 
