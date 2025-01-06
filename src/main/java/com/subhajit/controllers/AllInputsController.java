@@ -51,7 +51,7 @@ public class AllInputsController {
 	public ResponseEntity<String> springQuerystring(@RequestParam("id") Integer id, @RequestParam("name") String name, HttpServletRequest request) {
 		System.out.println("spring-querystring >> " + Thread.currentThread().getId());
 		try{
-			Thread.sleep(30000);
+			//Thread.sleep(30000);
 		}catch(Exception e){}
 		return new ResponseEntity("spring-querystring :: " + id + " - " + name,HttpStatus.OK);
 	}
